@@ -93,6 +93,10 @@ export default function Profile({ match }) {
             primary={"Joined: " + new Date(user.created).toDateString()}
           />
         </ListItem>
+        <Divider/>
+        <ListItem>
+          <ListItemText primary={this.state.user.about}/>
+        </ListItem>
       </List>
     </Paper>
   );

@@ -116,6 +116,15 @@ export default function EditProfile({ match }) {
         />
         <br />
         <TextField
+          id="multiline-flexible"
+          label="About"
+          multiline
+          rows="2"
+          value={values.about}
+          onChange={handleChange("about")}
+        />
+        <br />
+        <TextField
           id="email"
           type="email"
           label="Email"
