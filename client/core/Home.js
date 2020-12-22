@@ -51,19 +51,11 @@ export default function Home() {
         className={classes.credit}
         color="textSecondary"
       >
-        Photo by{" "}
-        <a
-          href="https://unsplash.com/@boudewijn_huysmans"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Boudewijn Huysmans
-        </a>{" "}
-        on Unsplash
+        Welcome to Yogera
       </Typography>
       <CardContent>
         <Typography variant="body1" component="p">
-          Welcome to the MERN Skeleton home page.
+          Welcome to the Yogera App home page.
         </Typography>
       </CardContent>
     </Card>
