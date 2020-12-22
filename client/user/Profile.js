@@ -62,6 +62,11 @@ export default function Profile({ match }) {
   if (redirectToSignin) {
     return <Redirect to="/signin" />;
   }
+
+  const photoUrl = values.user._id
+    ? `/api/users/photo/${values.user._id}?${new Date().getTime()}`
+    : "/api/users/defaultphoto";
+
   return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
@@ -73,6 +78,7 @@ export default function Profile({ match }) {
             <Avatar>
               <Person />
             </Avatar>
+            <Avatar src={photoUrl} />
           </ListItemAvatar>
           <ListItemText primary={user.name} secondary={user.email} />{" "}
           {auth.isAuthenticated().user &&
@@ -93,9 +99,9 @@ export default function Profile({ match }) {
             primary={"Joined: " + new Date(user.created).toDateString()}
           />
         </ListItem>
-        <Divider/>
+        <Divider />
         <ListItem>
-          <ListItemText primary={this.state.user.about}/>
+          <ListItemText primary={this.state.user.about} />
         </ListItem>
       </List>
     </Paper>
