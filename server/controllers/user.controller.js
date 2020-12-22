@@ -182,7 +182,7 @@ const removeFollower = async (req, res) => {
 
 const findPeople = async (req, res) => {
   let following = req.profile.following;
-  following.push.(req.profile._id)
+  following.push(req.profile._id)
 
   try {
     let users = await users.find({_id: {$nin : following}}).select("name")
