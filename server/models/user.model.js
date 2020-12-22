@@ -19,12 +19,24 @@ const UserSchema = new mongoose.Schema({
   },
   about: {
     type: String,
-    trim: true
+    trim: true,
   },
   photo: {
     type: Buffer,
-    contentType: String
+    contentType: String,
   },
+  following: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  followers: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
 
   salt: String,
   updated: Date,
