@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import FileUpload from '@material-ui/icons/AddPhotoAlternate'
+import FileUpload from "@material-ui/icons/AddPhotoAlternate";
 import { makeStyles } from "@material-ui/core/styles";
 import auth from "./../auth/auth-helper";
 import { read, update } from "./api-user.js";
@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     marginBottom: theme.spacing(2),
   },
-  filename:{
-    marginLeft:'10px'
-  }
+  filename: {
+    marginLeft: "10px",
+  },
 }));
 
 export default function EditProfile({ match }) {
@@ -52,7 +52,7 @@ export default function EditProfile({ match }) {
     open: false,
     error: "",
     redirectToProfile: false,
-    id: ""
+    id: "",
   });
   const jwt = auth.isAuthenticated();
 
@@ -79,11 +79,13 @@ export default function EditProfile({ match }) {
   }, [match.params.userId]);
 
   const clickSubmit = () => {
-    const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined,
-    };
+    let userData = new FormData();
+    values.name && userData.append("name", values.name);
+    values.email && userData.append("email", values.email);
+    values.passoword && userData.append("passoword", values.passoword);
+    values.about && userData.append("about", values.about);
+    values.photo && userData.append("photo", values.photo);
+
     update(
       {
         userId: match.params.userId,
@@ -91,7 +93,7 @@ export default function EditProfile({ match }) {
       {
         t: jwt.token,
       },
-      user
+      userData
     ).then((data) => {
       if (data && data.error) {
         setValues({ ...values, error: data.error });
@@ -101,6 +103,7 @@ export default function EditProfile({ match }) {
     });
   };
   const handleChange = (name) => (event) => {
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
     setValues({ ...values, [name]: event.target.value });
   };
 
