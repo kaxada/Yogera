@@ -24,7 +24,11 @@ const create = async (req, res) => {
  */
 const userByID = async (req, res, next, id) => {
   try {
-    let user = await User.findById(id);
+    let user = await (await User.findById(id))
+      .populate("following", "_id name")
+      .populate("followers", "_id name")
+      .exec();
+
     if (!user)
       return res.status("400").json({
         error: "User not found",
@@ -118,5 +122,5 @@ export default {
   remove,
   update,
   photo,
-  defaultphoto,
+  defaultPhoto,
 };
