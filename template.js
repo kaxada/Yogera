@@ -1,4 +1,4 @@
-export default ({markup, css}) => {
+export default ({ markup, css }) => {
     return `<!doctype html>
       <html lang="en">
         <head>
@@ -12,8 +12,7 @@ export default ({markup, css}) => {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
           <style>
               a{
-                text-decoration: none;
-                color: #061d95
+                text-decoration: none
               }
           </style>
         </head>
