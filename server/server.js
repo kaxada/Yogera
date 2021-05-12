@@ -4,11 +4,10 @@ import mongoose from 'mongoose'
 
 // Connection URL
 const mongoUri = "mongodb+srv://EKaxada:yogera@cluster0.rl9xu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-mongoose.Promise = global.Promise
-mongoose.connect(mongoUri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false })
-mongoose.connection.on('error', () => {
-    throw new Error(`unable to connect to database: ${mongoUri}`)
-})
+
+mongoose.connect(mongoUri, { useNewUrlParser: true })
+    .then(connect => console.log('connected to mongodb..'))
+    .catch(e => console.log('could not connect to mongodb', e))
 
 app.listen(config.port, (err) => {
     if (err) {
